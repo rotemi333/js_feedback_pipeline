@@ -60,6 +60,39 @@ function iterateObjectsToBeNull(objArray){
     }
 }
 
-var arr2 = [{name: "something", age: 5}, {time: "something", size: 33}];
-console.log(arr2);
-iterateObjectsToBeNull(arr2);
+// var arr2 = [{name: "something", age: 5}, {time: "something", size: 33}];
+// console.log(arr2);
+// iterateObjectsToBeNull(arr2);
+
+
+
+
+
+
+var person1 = {
+    firstName: "Dan",
+    age: 30
+}
+
+var person2 = { ...person1, firstName: 30 }
+person2.age = 50;
+
+console.log("Person 1")
+console.log(person1)
+console.log("Person 2")
+console.log(person2)
+
+
+
+var arr1 = 1
+var arr2 = [ ...arr1, "y", "u" ]
+
+console.log(arr1)
+console.log(arr2)
+
+
+
+
+
+
+
