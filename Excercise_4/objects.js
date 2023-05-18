@@ -61,5 +61,5 @@ function iterateObjectsToBeNull(objArray){
 }
 
 var arr2 = [{name: "something", age: 5}, {time: "something", size: 33}];
-console.log("Before Calling the function", arr2)
+console.log(arr2);
 iterateObjectsToBeNull(arr2);
