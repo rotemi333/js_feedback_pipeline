@@ -1,4 +1,4 @@
-counter = 0;
+// counter = 0;
 
 function helloWorld(){
     console.log("Hello World", counter);
@@ -8,7 +8,7 @@ function helloWorld(){
     counter+=1
 }
 
-intervalID = setInterval(helloWorld, 1000);
+// intervalID = setInterval(helloWorld, 1000);
 
 // console.log("Step1")
 // var timerId = setTimeout(helloWorld, 0)
@@ -41,17 +41,17 @@ function getMessageToPrint(){
 
 var AMOUNT_OF_MS_IN_SECOND = 1000;
 
-function main(){
-    try {
-        var numberOfsec = getNumberOfSeconds();
-        var message = getMessageToPrint();
-        setInterval(function(){
-            console.log(message);
-        }, numberOfsec * AMOUNT_OF_MS_IN_SECOND)
-    } catch (e){
-        alert(e.message)
-    }
-}
+// function main(){
+//     try {
+//         var numberOfsec = getNumberOfSeconds();
+//         var message = getMessageToPrint();
+//         setInterval(function(){
+//             console.log(message);
+//         }, numberOfsec * AMOUNT_OF_MS_IN_SECOND)
+//     } catch (e){
+//         alert(e.message)
+//     }
+// }
 
 
 
@@ -65,6 +65,75 @@ function main(){
 // 3. age (number larger then 21)
 // Print all the persons with delay of 3 seconds between each print.
 
+
+function getPostiveNumber(message){
+    var numAsString = prompt(message);
+    var num = parseInt(numAsString);
+
+    if(isNaN(num)){
+        throw new TypeError("Please insert only numbers")
+    }
+
+    if(num < 0){
+        throw new RangeError("Number must be postive")
+    }
+
+    return num;
+}
+
+function createPersons(numToCreate){
+    var persons = [];
+
+    for(var i=0; i < numToCreate; i++ ){
+
+        var firstName = prompt('Enter first name of person ' + i.toString() );
+        if(firstName.length > 25){
+            throw new RangeError("First name can be up to 25 chracters")
+        }
+
+        var lastName = prompt('Enter last name of person ' + i.toString() );
+        if(lastName.length > 50){
+            throw new RangeError("First name can be up to 25 chracters")
+        }
+
+        var age = getPostiveNumber('Enter age of person ' + i.toString() );
+        if(age < 21){
+            throw new RangeError("Person must be more then 21 years old")
+        }
+
+        // Pusing new person into the array
+        persons.push({
+            firstName,
+            lastName,
+            age
+        });
+    }
+
+    return persons;
+}
+
+
+function main(){
+    try{
+        var numberOfPersonsToCreate = getPostiveNumber("how much persons would you like to create?")
+        var persons = createPersons(numberOfPersonsToCreate);
+        console.log(persons);
+
+        intervalId = setInterval(function(){
+            var personToPrint = persons.shift();
+            console.log(personToPrint);
+            if(!persons.length){
+                clearInterval(intervalId);
+            }
+        }, 2000);
+
+    } catch(error){
+        alert(error.message)
+    }
+
+}
+
+main();
 
 
 
